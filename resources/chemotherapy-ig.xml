@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ImplementationGuide xmlns="http://hl7.org/fhir">
-	<id value="igtemplate"/>
-	<url value="http://hl7.org/fhir/chemotherapy-ig"/>
+	<id value="chemotherapy-ig"/>
+	<url value="http://hl7.org/fhir/chemotherapy-ig/ImplementationGuide/chemotherapy-ig"/>
 	<version value="1"/>
 	<name value="International Chemotherapy Implementation Guide"/>
 	<status value="draft"/>
