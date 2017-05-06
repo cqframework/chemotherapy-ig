@@ -9,8 +9,9 @@
           <!-- NOTE: There is some question about whether to include version information -->
           <!-- Option A: Leave it out -->
           <!-- Option B: use the international module: 900000000000207008 -->
-          <version value="http://snomed.org/sct/731000124108/version/20170131"/>
-          <version value="http://snomed.org/sct/731000124108/version/20170131"/>
+          <version value="http://snomed.org/sct/900000000000207008/version/20170131"/>
+          <!-- Option C: use appropriate regional specifiers? (us edition for us usage) -->
+          <!--version value="http://snomed.org/sct/731000124108/version/20170131"/-->
           <code value="108965009"/>
           <display value="Filgrastim"/>
         </coding>
@@ -18,7 +19,6 @@
       <route>
         <coding>
           <system value="http://snomed.org/sct"/>
-          <version value="http://snomed.org/sct/731000124108/version/20170131"/>
           <code value="34206005"/>
           <display value="Subcutaneous route"/>
         </coding>
