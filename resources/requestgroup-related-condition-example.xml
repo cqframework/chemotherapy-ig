@@ -1,0 +1,87 @@
+<?xml-model href="http://hl7.org/fhir/requestgroup.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<RequestGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/requestgroup.xsd" xmlns="http://hl7.org/fhir">
+  <contained>
+    <MedicationRequest>
+      <id value="filgrastim-request"/>
+      <intent value="order"/>
+      <medicationCodeableConcept>
+        <coding>
+          <system value="http://snomed.org/sct"/>
+          <!-- NOTE: There is some question about whether to include version information -->
+          <!-- Option A: Leave it out -->
+          <!-- Option B: use the international module: 900000000000207008 -->
+          <version value="http://snomed.org/sct/900000000000207008/version/20170131"/>
+          <!-- Option C: use appropriate regional specifiers? (us edition for us usage) -->
+          <!--version value="http://snomed.org/sct/731000124108/version/20170131"/-->
+          <code value="108965009"/>
+          <display value="Filgrastim"/>
+        </coding>
+      </medicationCodeableConcept>
+      <subject>
+        <reference value="Patient/1"/>
+      </subject>
+      <dosageInstruction>      
+          <timing>
+            <repeat>
+              <frequency value="1"/>
+              <period value="1"/>
+              <periodUnit value="d"/>
+            </repeat>
+          </timing>
+          <route>
+            <coding>
+              <system value="http://snomed.org/sct"/>
+              <code value="34206005"/>
+              <display value="Subcutaneous route"/>
+            </coding>
+          </route>
+          <doseQuantity>
+            <value value="5"/>
+            <unit value="mcg/kg"/>
+          </doseQuantity>           
+      </dosageInstruction>      
+    </MedicationRequest>    
+  </contained>
+  <contained>
+    <ProcedureRequest>
+      <id value="cbc-procedure-request"></id>
+      <status value="active"/>
+      <intent value="order"/>
+      <code>
+        <coding>
+          <system value="http://loinc.org"/>
+          <code value="24318-8"/>
+          <display value="Manual Differential panel - Blood"/>
+        </coding>
+      </code>
+      <subject>
+        <reference value="Patient/1"/>
+      </subject>
+      <occurrenceTiming>
+        <repeat>
+          <frequency value="1"/>
+          <period value="1"/>
+          <periodUnit value="d"/>
+        </repeat>
+      </occurrenceTiming>
+    </ProcedureRequest>
+  </contained>
+  <status value="active"/>
+  <intent value="order"/>
+  <action>
+    <condition>
+      <kind value="stop"/>
+      <description value="Most recent absolute neutrophil count (ANC) is normal"/>
+      <language value="text/cql"/>
+      <expression value="Last([Observation: &quot;ANC&quot;] O sort by issued).interpretation in &quot;Normal&quot;"/>
+    </condition>
+    <resource>
+      <reference value="#filgrastim-request"/>
+    </resource>
+  </action>
+  <action>
+    <resource>
+      <reference value="#cbc-procedure-request"/>
+    </resource>
+  </action>
+</RequestGroup>
