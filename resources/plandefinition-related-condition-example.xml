@@ -1,0 +1,84 @@
+<PlanDefinition>
+  <contained>
+    <ActivityDefinition>
+      <id value="filgrastim"/>
+      <type value="MedicationRequest"/>
+      <code>
+        <coding>
+          <system value="http://snomed.org/sct"/>
+          <code value="108965009"/>
+          <display value="Filgrastim"/>
+        </coding>
+      </code>
+      <route>
+        <coding>
+          <system value="http://snomed.org/sct"/>
+          <code value="34206005"/>
+          <display value="Subcutaneous route"/>
+        </coding>
+      </route>
+      <dosage>
+        <timing>
+          <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+          </repeat>
+        </timing>
+        <doseQuantity>
+          <value value="5"/>
+          <unit value="mcg/kg"/>
+        </doseQuantity>
+      </dosage>
+    </ActivityDefinition>
+  </contained>
+  <contained>
+    <ActivityDefinition>
+      <id value="cbc-differential-automated"/>
+      <type value="ProcedureRequest"/>
+      <code>
+        <coding>
+          <system value="http://loinc.org"/>
+          <code value="57021-8"/>
+          <display value="CBC W Auto Differential panel - Blood"/>
+        </coding>
+      </code>
+    </ActivityDefinition>
+  </contained>
+  <contained>
+    <ActivityDefinition>
+      <id value="cbc-differential-manual"/>
+      <type value="ProcedureRequest"/>
+      <code>
+        <coding>
+          <system value="http://loinc.org"/>
+          <code value="24318-8"/>
+          <display value="Manual Differential panel - Blood"/>
+        </coding>
+      </code>
+    </ActivityDefinition>
+  </contained>
+  <contained>
+    <ActivityDefinition>
+      <type value="MedicationRequest"/>
+    </ActivityDefinition>
+  </contained>
+  <action>
+    <title value="Filgrastim 5mcg/kg daily"/>
+    <!-- TODO: The plan should include testing for WBC on a periodic basis so that this condition can be evaluated -->
+    <!-- TODO: Below a certain threshold, a manual test must be used, rather than an automated one -->
+    <condition>
+      <kind value="stop"/>
+      <expression value="[Observation: &quot;ANC&quot;] O where O.value in &quot;Normal&quot;"/>
+    </condition>
+    <definition>
+      <reference value="#medication-request"/>
+    </definition>
+  </action>
+  <action>
+    <!-- Perform a CBC daily... -->
+    <definition>
+      <reference value="#cbc-procedure-request"/>
+    </definition>
+  </action>
+</PlanDefinition>
