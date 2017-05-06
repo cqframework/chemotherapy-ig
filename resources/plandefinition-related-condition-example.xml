@@ -6,6 +6,10 @@
       <code>
         <coding>
           <system value="http://snomed.org/sct"/>
+          <!-- NOTE: There is some question about whether to include version information -->
+          <!-- Option A: Leave it out -->
+          <!-- Option B: use the international module: 900000000000207008 -->
+          <version value="http://snomed.org/sct/731000124108/version/20170131"/>
           <version value="http://snomed.org/sct/731000124108/version/20170131"/>
           <code value="108965009"/>
           <display value="Filgrastim"/>
@@ -71,7 +75,9 @@
     <!-- TODO: Below a certain threshold, a manual test must be used, rather than an automated one -->
     <condition>
       <kind value="stop"/>
-      <expression value="[Observation: &quot;ANC&quot;] O where O.value in &quot;Normal&quot;"/>
+      <description value="Most recent absolute neutrophil count (ANC) is normal"/>
+      <language value="text/cql"/>
+      <expression value="Last([Observation: &quot;ANC&quot;] O sort by issued).interpretation in &quot;Normal&quot;"/>
     </condition>
     <definition>
       <reference value="#medication-request"/>
