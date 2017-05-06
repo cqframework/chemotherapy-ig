@@ -6,6 +6,7 @@
       <code>
         <coding>
           <system value="http://snomed.org/sct"/>
+          <version value="http://snomed.org/sct/731000124108/version/20170131"/>
           <code value="108965009"/>
           <display value="Filgrastim"/>
         </coding>
@@ -13,6 +14,7 @@
       <route>
         <coding>
           <system value="http://snomed.org/sct"/>
+          <version value="http://snomed.org/sct/731000124108/version/20170131"/>
           <code value="34206005"/>
           <display value="Subcutaneous route"/>
         </coding>
